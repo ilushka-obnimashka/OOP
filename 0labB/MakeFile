@@ -1,0 +1,8 @@
+TARGET = 0b
+CC = g++
+
+$(TARGET) : main.o
+	$(CC) main.o -o $(TARGET)
+
+main.o : main.cpp
+	$(CC) -c main.cpp -o main.o
