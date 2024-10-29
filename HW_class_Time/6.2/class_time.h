@@ -9,29 +9,31 @@ class Time
     int hours = 0, minutes = 0, seconds = 0;
 
 public:
-    Time();
-    ~Time();
+    Time() ;
+    ~Time() ;
     Time (int h, int m, int s);
-    Time (const Time& t);
-    Time& operator= (const Time& other);
-    Time& operator += (int s);
-    Time& operator -= (int s);
-    bool operator == (int s) const;
-    bool operator == (const Time& t) const;
-    Time operator + (int s) const;
-    Time operator - (int s) const;
-    int GetHours() const;
-    int GetMinutes() const;
-    int GetSeconds() const;
-    static int GetCounter();
+    Time (const Time& t) ;
+    Time& operator= (const Time& other) noexcept;
+    Time& operator += (int s) noexcept;
+    Time& operator -= (int s) noexcept;
+    bool operator == (int s) const noexcept;
+    bool operator == (const Time& t) const noexcept;
+    Time operator + (int s) const noexcept;
+    Time operator - (int s) const noexcept;
+    int GetHours() const noexcept;
+    int GetMinutes() const noexcept;
+    int GetSeconds() const noexcept;
+    static int GetCounter() noexcept;
     void SetHours(int h);
     void SetMinutes(int m);
     void SetSeconds(int s);
-    void PrintTime ();
-    void Normalize();
-    int ToSeconds() const;
-    friend std::ostream& operator << (std::ostream& out, const Time& t);
-    friend std::istream& operator >> (std::istream& in, Time& t);
+    void PrintTime () noexcept;
+    void Normalize() noexcept;
+    int ToSeconds() const noexcept;
+    friend std::ostream& operator << (std::ostream& out, const Time& t) noexcept ;
+    friend std::istream& operator >> (std::istream& in, Time& t) noexcept;
+
+
 };
 
 #endif // CLASS_TIME_H

@@ -11,12 +11,12 @@
 
 int Time::counter = 0;
 
-Time:: Time() noexcept {
+Time:: Time()  {
     counter++;
     std::cout << "Constructor called. Object count: " << counter << std::endl;
 }
 
-Time::~Time() noexcept {
+Time::~Time() {
     counter--;
     std::cout << "Deconstructor called. Object count: " << counter << std::endl;
 }
@@ -53,7 +53,7 @@ Time& Time::operator+=(int s) noexcept {
     return *this;
 }
 
-Time& Time::operator-=(int s) {
+Time& Time::operator-=(int s) noexcept{
     this->seconds -= s;
     Normalize();
     return *this;
@@ -82,19 +82,22 @@ int Time::GetMinutes() const noexcept { return minutes; }
 int Time::GetSeconds() const noexcept { return seconds; }
 int Time::GetCounter() noexcept { return counter; };
 
-void Time::SetHours(int h) noexcept {
+void Time::SetHours(int h) {
+    if (h<0) throw std::invalid_argument("Hours can not be less 0");
     hours = h;
-    if (hours > 24) Normalize();
+    if (hours > 24) throw std::invalid_argument("Hours can not be more 23");
 }
 
-void Time::SetMinutes(int m) noexcept {
+void Time::SetMinutes(int m) {
+    if (m<0) throw std::invalid_argument("Minutes can not be less 0");
     minutes = m;
-    if (minutes > 59) Normalize();
+    if (minutes > 59) throw std::invalid_argument("Minutes can not be more 60");;
 }
 
-void Time::SetSeconds(int s) noexcept {
+void Time::SetSeconds(int s) {
+    if (s<0) throw std::invalid_argument("Seconds can not be less 0");
     seconds = s;
-    if (seconds > 59) Normalize();
+    if (seconds > 59) throw std::invalid_argument("Seconds can not be more 60");;
 }
 
 void Time::PrintTime() noexcept {
@@ -146,19 +149,26 @@ std::istream& operator>>(std::istream& in, Time& t) noexcept {
     return in;
 }
 
-
 int main() {
     try
     {
         Time t(10,20,30);
         std:: cout << t;
+        try
+        {
+         t.SetHours(-10);
+        }
+        catch (std:: exception &ex)
+        {
+            std::cerr << "Error: " << ex.what() <<  std::endl;
+        }
     }
     catch (std:: exception &ex)
     {
         std::cerr << "Error: " << ex.what() <<  std::endl;
     }
 
-    try
+    /*try
     {
         Time t(-10,20,30);
         std:: cout << t;
@@ -176,6 +186,6 @@ int main() {
     catch (std:: exception &ex)
     {
         std::cerr << "Error: " << ex.what() << std::endl;
-    }
+    }*/
 
 }
