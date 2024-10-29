@@ -84,20 +84,20 @@ int Time::GetCounter() noexcept { return counter; };
 
 void Time::SetHours(int h) {
     if (h<0) throw std::invalid_argument("Hours can not be less 0");
-    hours = h;
     if (hours > 24) throw std::invalid_argument("Hours can not be more 23");
+    hours = h;
 }
 
 void Time::SetMinutes(int m) {
     if (m<0) throw std::invalid_argument("Minutes can not be less 0");
-    minutes = m;
     if (minutes > 59) throw std::invalid_argument("Minutes can not be more 60");;
+    minutes = m;
 }
 
 void Time::SetSeconds(int s) {
     if (s<0) throw std::invalid_argument("Seconds can not be less 0");
-    seconds = s;
     if (seconds > 59) throw std::invalid_argument("Seconds can not be more 60");;
+    seconds = s;
 }
 
 void Time::PrintTime() noexcept {
