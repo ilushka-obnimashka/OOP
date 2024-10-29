@@ -138,3 +138,6 @@ std::istream& operator>>(std::istream& in, Time& t) {
     return in;
 }
 
+int main() {
+    return 0;
+}

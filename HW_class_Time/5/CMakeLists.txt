@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Добавляем опцию включения/отключения тестов
 option(BUILD_TEST "Build test" ON)
+# -
 
 include(FetchContent)
 FetchContent_Declare(googletest
