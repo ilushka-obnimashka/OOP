@@ -11,12 +11,12 @@
 
 int Time::counter = 0;
 
-Time::Time() {
+Time:: Time() noexcept {
     counter++;
     std::cout << "Constructor called. Object count: " << counter << std::endl;
 }
 
-Time::~Time() {
+Time::~Time() noexcept {
     counter--;
     std::cout << "Deconstructor called. Object count: " << counter << std::endl;
 }
@@ -40,14 +40,14 @@ Time::Time(const Time& t) : hours(t.hours), minutes(t.minutes), seconds(t.second
     std::cout << "Copy constructor called. Object count: " << counter << std::endl;
 }
 
-Time& Time::operator=(const Time& other) {;
+Time& Time::operator=(const Time& other) noexcept {;
     this->hours = other.hours;
     this->minutes = other.minutes;
     this->seconds = other.seconds;
     return *this;
 }
 
-Time& Time::operator+=(int s) {
+Time& Time::operator+=(int s) noexcept {
     this->seconds += s;
     Normalize();
     return *this;
@@ -59,49 +59,49 @@ Time& Time::operator-=(int s) {
     return *this;
 }
 
-bool Time::operator==(int s) const {
+bool Time::operator==(int s) const noexcept {
     if (this->ToSeconds() == s) return true;
     return false;
 }
 
-bool Time::operator==(const Time& t) const {
+bool Time::operator==(const Time& t) const noexcept {
     if (this->ToSeconds() == t.ToSeconds()) return true;
     return false;
 }
 
-Time Time::operator+(int s) const {
+Time Time::operator+(int s) const noexcept {
     return Time(hours, minutes, seconds + s);
 }
 
-Time Time::operator-(int s) const {
+Time Time::operator-(int s) const noexcept {
     return Time(hours, minutes, seconds - s);
 }
 
-int Time::GetHours() const { return hours; }
-int Time::GetMinutes() const { return minutes; }
-int Time::GetSeconds() const { return seconds; }
-int Time::GetCounter() { return counter; };
+int Time::GetHours() const noexcept { return hours; }
+int Time::GetMinutes() const noexcept { return minutes; }
+int Time::GetSeconds() const noexcept { return seconds; }
+int Time::GetCounter() noexcept { return counter; };
 
-void Time::SetHours(int h) {
+void Time::SetHours(int h) noexcept {
     hours = h;
     if (hours > 24) Normalize();
 }
 
-void Time::SetMinutes(int m) {
+void Time::SetMinutes(int m) noexcept {
     minutes = m;
     if (minutes > 59) Normalize();
 }
 
-void Time::SetSeconds(int s) {
+void Time::SetSeconds(int s) noexcept {
     seconds = s;
     if (seconds > 59) Normalize();
 }
 
-void Time::PrintTime() {
+void Time::PrintTime() noexcept {
     std::cout << "H:" << this->GetHours() << " M:" << this->GetMinutes() << " S:" << this->GetSeconds() << std::endl;
 }
 
-void Time::Normalize() {
+void Time::Normalize() noexcept {
     int totalSec = this->ToSeconds();
 
     if (totalSec < 0) {
@@ -121,7 +121,7 @@ void Time::Normalize() {
     }
 }
 
-int Time::ToSeconds() const {
+int Time::ToSeconds() const noexcept {
     int totalSec = 0;
     totalSec += this->GetSeconds();
     totalSec += this->GetMinutes() * 60;
@@ -129,12 +129,12 @@ int Time::ToSeconds() const {
     return totalSec;
 }
 
-std::ostream& operator<<(std::ostream& out, const Time& t) {
+std::ostream& operator<<(std::ostream& out, const Time& t) noexcept {
     out << t.GetHours() << ":" << t.GetMinutes() << ":" << t.GetSeconds() << std::endl;
     return out;
 }
 
-std::istream& operator>>(std::istream& in, Time& t) {
+std::istream& operator>>(std::istream& in, Time& t) noexcept {
     int h, m, s;
     char tmp;
 
