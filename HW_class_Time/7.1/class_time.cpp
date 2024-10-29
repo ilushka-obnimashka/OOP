@@ -149,43 +149,48 @@ std::istream& operator>>(std::istream& in, Time& t) noexcept {
     return in;
 }
 
+
+
+
 int main() {
     try
     {
-        Time t(10,20,30);
-        std:: cout << t;
-        try
-        {
-         t.SetHours(-10);
-        }
-        catch (std:: exception &ex)
-        {
-            std::cerr << "Error: " << ex.what() <<  std::endl;
-        }
+        Time t1(10,20,30);
+        SimpleWatch sw;
+        sw.PrintTime(t1);
+        try {sw.SetMinutes_Time(t1,10);}
+        catch (std:: exception &ex) {std::cerr << "Error: " << ex.what() <<  std::endl;}
+
+        try {sw.SetFormat(12);}
+        catch (std:: exception &ex){std::cerr << "Error: " << ex.what() <<  std::endl;}
+        sw.PrintTime(t1);
+
+        try {sw.SetHours_Time(t1,00);}
+        catch (std:: exception &ex) {std::cerr << "Error: " << ex.what() <<  std::endl;}
+        sw.PrintTime(t1);
+
+
+        Watch w;
+        Time t2(22,00,30);
+
+        try {w.SetMinutes_Time(t2,10);}
+        catch (std:: exception &ex) {std::cerr << "Error: " << ex.what() <<  std::endl;}
+
+        try {w.SetFormat(12);}
+        catch (std:: exception &ex){std::cerr << "Error: " << ex.what() <<  std::endl;}
+        w.PrintTime(t2);
+
+        try {w.SetHours_Time(t2,00);}
+        catch (std:: exception &ex) {std::cerr << "Error: " << ex.what() <<  std::endl;}
+        w.PrintTime(t2);
+
     }
     catch (std:: exception &ex)
     {
         std::cerr << "Error: " << ex.what() <<  std::endl;
     }
 
-    /*try
-    {
-        Time t(-10,20,30);
-        std:: cout << t;
-    }
-    catch (std:: exception &ex)
-    {
-        std::cerr<< "Error: " << ex.what() << std::endl;
-    }
 
-    try
-    {
-        Time t(10,-20,30);
-        std:: cout << t;
-    }
-    catch (std:: exception &ex)
-    {
-        std::cerr << "Error: " << ex.what() << std::endl;
-    }*/
+
 
 }
