@@ -139,7 +139,7 @@ std::istream& operator>>(std::istream& in, Time& t) {
 }
 
 
-/*int main() {
+int main() {
     // Задание 6:
     // a)Дополнительно создать объекты класса Time  в динамической памяти (как один экземпляр, так и массив небольшого размера).
     std:: cout << GREEN << "creating one object in dynamic memory:\n" << RESET;
@@ -217,4 +217,4 @@ std::istream& operator>>(std::istream& in, Time& t) {
 
     }
 
-}*/
+}
