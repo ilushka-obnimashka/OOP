@@ -1,7 +1,5 @@
 #include "class_time.h"
 #include <iostream>
-#include <vector>
-#include <list>
 #include <memory>
 
 
@@ -138,6 +136,7 @@ std::istream& operator>>(std::istream& in, Time& t) {
     return in;
 }
 
-int main() {
+/*int main() {
+    std:: cout << "Hello!";
     return 0;
-}
+}*/
