@@ -12,5 +12,4 @@ int main() {
     std:: cout <<"\n";
     waterfowl w;
     std:: cout <<"\n";
-
 }

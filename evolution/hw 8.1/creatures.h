@@ -46,7 +46,7 @@ public:
     }
 };
 
-class terrestrial : private amphibious{
+class terrestrial : public generic{
 public:
     terrestrial() {
         std:: cout << "Terrestrial creatures Constructor called" << std:: endl;
@@ -54,7 +54,9 @@ public:
     ~terrestrial() {
         std:: cout << "Terrestrial creatures Deconstructor called" << std:: endl;
     }
-    using  amphibious::walk;
+    void walk() {
+        std:: cout << "I can walk" << std:: endl;
+    }
 };
 
 class bird : public terrestrial{
@@ -70,13 +72,16 @@ public:
     }
 };
 
-class waterfowl:virtual public bird,virtual public ocean{
+class waterfowl: public bird{
 public:
     waterfowl() {
         std:: cout << "Waterfowl creatures Constructor called" << std:: endl;
     }
     ~waterfowl() {
         std:: cout << "Waterfowl creatures Deconstructor called" << std:: endl;
+    }
+    void swim () {
+        std:: cout << "I can swim" << std:: endl;
     }
 };
 
