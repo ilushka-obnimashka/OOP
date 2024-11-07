@@ -78,9 +78,7 @@ public:
     ~waterfowl() {
         std:: cout << "Waterfowl creatures Deconstructor called" << std:: endl;
     }
-    void swim () {
-        ocean::swim();
-    }
+    using amphibious::swim;
 };
 
 #endif //CREATURES_H
