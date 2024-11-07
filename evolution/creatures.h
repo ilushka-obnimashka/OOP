@@ -15,7 +15,6 @@ public:
 
 };
 
-
 class canFly{
 public:
     virtual void fly () = 0;
@@ -51,7 +50,7 @@ public:
     }
 };
 
-class amphibious : public generic, public canSwim, public canWalk{
+class amphibious : public ocean, public canWalk{
 public:
     amphibious() {
         std:: cout << "Amphibious creatures Constructor called" << std:: endl;
@@ -62,7 +61,7 @@ public:
     void walk() {
         std:: cout << "I am amphibious creatures and I can walk" << std:: endl;
     }
-    void swim () override{
+    void swim () {
         std:: cout << "I am amphibious creatures and I can swim" << std:: endl;
     }
 
@@ -90,7 +89,23 @@ public:
         std:: cout << "Bird creatures Deconstructor called" << std:: endl;
     }
     void fly () override {
-        std:: cout << "I am Ocean creatures and I can swim" << std:: endl;
+        std:: cout << "I am Bird creatures and I can fly" << std:: endl;
+    }
+};
+
+class waterfowl:virtual public bird,virtual public ocean{
+public:
+    waterfowl() {
+        std:: cout << "Waterfowl creatures Constructor called" << std:: endl;
+    }
+    ~waterfowl() {
+        std:: cout << "Waterfowl creatures Deconstructor called" << std:: endl;
+    }
+    void swim ()  {
+        std:: cout << "I am waterfowl creatures and I can swim" << std:: endl;
+    }
+    void fly ()  {
+        std:: cout << "I am waterfowl creatures and I can fly" << std:: endl;
     }
 };
 

@@ -10,5 +10,6 @@ int main() {
     std:: cout <<"\n";
     ocean o;
     std:: cout <<"\n";
-
+    waterfowl w;
+    std:: cout <<"\n";
 }
