@@ -6,7 +6,7 @@ const std::string kRESET = "\033[0m";
 const std::string kYELLOW = "\033[33m";
 
 const int kCELL_WIDTH_HEIGHT = 10;
-const int kFPS = 12;
+int FPS = 10;
 const Color kGREY = {29, 29, 29, 255};
 
 void Game::Start(int argc) {
@@ -46,18 +46,54 @@ void Game::Start(int argc) {
 void Game::OnlineMode() {
     InitWindow(simulation_.GetUniverseColumns() * kCELL_WIDTH_HEIGHT, simulation_.GetUniverseRows() * kCELL_WIDTH_HEIGHT,
                "Game of Life");
-    SetTargetFPS(kFPS);
+    SetTargetFPS(FPS);
 
     int iteration = 0;
     while (WindowShouldClose() == false) {
+
+        if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
+            Vector2 mouse_possition = GetMousePosition();
+            int row_cell = mouse_possition.y / kCELL_WIDTH_HEIGHT;
+            int column_cell = mouse_possition.x / kCELL_WIDTH_HEIGHT;
+            simulation_.ToggleCell(row_cell, column_cell);
+        }
+
+        if (IsKeyPressed(KEY_C)) {
+            simulation_.Clear();
+            iteration = 0;
+            simulation_.Pause();
+            SetWindowTitle("Game of life has stopped");
+        }
+
+        if (IsKeyPressed(KEY_ENTER)) {
+            simulation_.Run();
+            SetWindowTitle("Game of life");
+        }
+
+        if (IsKeyPressed(KEY_SPACE)) {
+            simulation_.Pause();
+            SetWindowTitle("Game of life has stopped");
+        }
+
+        if (IsKeyPressed(KEY_D)) {
+            FPS+=2;
+            SetTargetFPS(FPS);
+        }
+
+        if (IsKeyPressed(KEY_A)) {
+            FPS-=2;
+            SetTargetFPS(FPS);
+        }
         simulation_.Update();
         BeginDrawing();
         ClearBackground(kGREY);
         std::string numberStr = std::to_string(iteration);
         simulation_.Draw();
-        DrawText(numberStr.c_str(), 10, 10, 30, WHITE);
+        if (simulation_.IsRunning()) {
+            DrawText(numberStr.c_str(), 10, 10, 30, WHITE);
+            iteration++;
+        }
         EndDrawing();
-        iteration++;
     }
     CloseWindow();
     file_handler_.WritingTheUniverseFromFile(simulation_, "output.txt");

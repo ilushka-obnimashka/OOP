@@ -7,6 +7,15 @@ void Simulation::SetCellValue(int x, int y, CellState status) {
     universe_.SetCellValue(x, y, status);
 }
 
+void Simulation::ToggleCell(int x, int y) {
+    if (universe_.GetCellStatus(x,y) == CellState::Alive) {
+        universe_.SetCellValue(x, y, CellState::Dead);
+    }
+    else {
+        universe_.SetCellValue(x, y, CellState::Alive);
+    }
+}
+
 
 // The method will get the status of the cell with coordinates (x,y), if the coordinates are correct
 // otherwise it will report an error.
@@ -110,27 +119,29 @@ int Simulation::CountLiveNeighbours(int x, int y) {
 // Double buffering method is used.
 // universe_ stores the current state, temp_universe_ stores the new state.
 void Simulation::Update() {
-    int rows = universe_.GetRows();
-    int columns = universe_.GetColumns();
+    if (IsRunning()) {
+        int rows = universe_.GetRows();
+        int columns = universe_.GetColumns();
 
-    temp_universe_ = universe_;
+        temp_universe_ = universe_;
 
-    for (size_t row = 0; row<rows; row++) {
-        for (size_t column = 0; column<columns; column++) {
+        for (size_t row = 0; row<rows; row++) {
+            for (size_t column = 0; column<columns; column++) {
 
-            int live_neighbours = CountLiveNeighbours(row,column);
+                int live_neighbours = CountLiveNeighbours(row,column);
 
-            CellState cell_status = GetCellStatus(row, column);
+                CellState cell_status = GetCellStatus(row, column);
 
-            if (cell_status == CellState::Dead) {
-                UpdateDead(row, column, live_neighbours);
-            }
-            else {
-                UpdateAlive(row,column, live_neighbours);
+                if (cell_status == CellState::Dead) {
+                    UpdateDead(row, column, live_neighbours);
+                }
+                else {
+                    UpdateAlive(row,column, live_neighbours);
+                }
             }
         }
+        universe_ = temp_universe_;
     }
-    universe_ = temp_universe_;
 }
 
 
@@ -178,6 +189,17 @@ void Simulation::RandomGenerationField() {
             if (random_value %2 == 0) {
                 universe_.SetCellValue(row, column, CellState::Alive);
             }
+        }
+    }
+}
+
+
+void Simulation::Clear() {
+    int rows = universe_.GetRows();
+    int columns = universe_.GetColumns();
+    for (size_t row = 0; row<rows; row++) {
+        for (size_t column = 0; column<columns; column++) {
+            universe_.SetCellValue(row, column, CellState::Dead);
         }
     }
 }

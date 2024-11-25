@@ -107,11 +107,7 @@ void FileHandler::ReadingTheUniverseFromFile(Simulation& simulation, const std::
                 int y = std::stoi(y_str);
 
                 simulation.SetCellValue(y, x, CellState::Alive);
-            } else {
-                throw std::invalid_argument("Incorrect cell coordinates");
             }
-        } else {
-            throw std::invalid_argument("Incorrect cell coordinates");
         }
     }
 

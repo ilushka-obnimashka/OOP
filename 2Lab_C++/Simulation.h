@@ -6,15 +6,23 @@
 // It allows you to initialize the grid, update the state of the cells and display the current state of the grid
 class Simulation {
 public:
-    Simulation(std::string name = "random", int numb_rows = 30, int numb_columns = 30,
+    Simulation(std::string name = "random", int numb_rows = 50, int numb_columns = 70,
                std::vector<int> birth_rules = {3},
                std::vector<int> survival_rules = {2, 3})
         : universe_(name, numb_rows, numb_columns, birth_rules, survival_rules),
-          temp_universe_(name, numb_rows, numb_columns, birth_rules, survival_rules) {};
+          temp_universe_(name, numb_rows, numb_columns, birth_rules, survival_rules),
+          run (true){};
+
+    bool IsRunning(){return run;};
+    void Run(){run = true;};
+    void Pause(){run = false;};
 
     //Method to set the status of a cell at coordinates (x, y) in the universe_.field attribute of the Simulation class.
     // universe_.field[x][y] = status.
     void SetCellValue(int x, int y, CellState status);
+
+    //Method to toggle the status of a cell at coordinates (x,y) in the universe_.field attribute of the simulation class.
+    void ToggleCell(int x, int y);
 
     //Method to get the status of a cell at coordinates (x, y) in the universe_.field attribute of the Simulation class.
     CellState GetCellStatus(int x, int y);
@@ -43,6 +51,8 @@ public:
     void SetUniverseColumns(int columns);
     void SetUniverseRows(int rows);
     void SetUniverseField(int x, int y);
+    //Clear field
+    void Clear();
 
     //Methods to get universe_.name,  universe_.birth_rules_, universe_.survival_rules_, universe_.columns_, universe_.rows_, universe_.field_ (size).
     std::string GetUniverseName();
@@ -58,6 +68,7 @@ public:
 private:
     Universe universe_;
     Universe temp_universe_;
+    bool run;
 };
 
 
