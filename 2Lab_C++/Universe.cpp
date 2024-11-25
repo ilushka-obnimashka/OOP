@@ -39,20 +39,20 @@ void Universe:: SetSurvivalRule(std::vector<int> rule) {
 }
 
 void Universe::SetColumns(int columns) {
-    if (columns <= 70) {
+    if (columns <= 100) {
         columns_ = columns;
     }
     else {
-        std::cerr << kRED << "Error: The number of columns should not exceed 70." << kRESET << std::endl;
+        std::cerr << kRED << "Error: The number of columns should not exceed 100." << kRESET << std::endl;
     }
 }
 
 void Universe::SetRows(int rows) {
-    if (rows <= 50) {
+    if (rows <= 80) {
         rows_ = rows;
     }
     else {
-        std::cerr << kRED << "Error: The number of rows should not exceed 50." << kRESET << std::endl;
+        std::cerr << kRED << "Error: The number of rows should not exceed 80." << kRESET << std::endl;
     }
 }
 
@@ -97,7 +97,7 @@ void Universe::Draw() {
     for (int row = 0; row <rows_; row++) {
         for (int column = 0; column < columns_; column++) {
             Color color = field_[row][column] == CellState::Alive ? Color{0,255,0,255} : Color {55,55,55,255};
-            DrawRectangle(column * 25, row * 25, 24, 24, color);
+            DrawRectangle(column * 10, row * 10, 9, 9, color);
         }
         std::cout << std::endl;
     }

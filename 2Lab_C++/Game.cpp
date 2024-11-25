@@ -5,7 +5,7 @@ const std::string kRED = "\033[1;31m";
 const std::string kRESET = "\033[0m";
 const std::string kYELLOW = "\033[33m";
 
-const int kCELL_WIDTH_HEIGHT = 25;
+const int kCELL_WIDTH_HEIGHT = 10;
 const int kFPS = 12;
 const Color kGREY = {29, 29, 29, 255};
 

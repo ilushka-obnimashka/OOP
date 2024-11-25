@@ -1,6 +1,6 @@
 #Life 1.06
-#N My universe
-#Size 30 30
+#N Planer
+#Size 100 80
 #R B3/S23
 0 2
 1 0
