@@ -1,6 +1,3 @@
-#ifndef CREATURES_H
-#define CREATURES_H
-
 /*generic creature - общий родитель
 ocean creature - наследник умеющий плавать
 amphibious - наследник умеющий плавать и ходить
@@ -12,73 +9,71 @@ waterfowl - водоплавающая птица. Умеет ходить, ле
 class generic {
 public:
     generic() {
-        std:: cout << "Generic Constructor called" << std:: endl;
+        std::cout << "Generic Constructor called" << std::endl;
     }
-    ~generic() {
-        std:: cout << "Generic Deconstructor called" << std:: endl;
+    virtual ~generic() {
+        std::cout << "Generic Deconstructor called" << std::endl;
     }
 };
 
-class ocean : public generic{
+class ocean : public generic {
 public:
     ocean() {
-        std:: cout << "Ocean creatures Constructor called" << std:: endl;
+        std::cout << "Ocean creatures Constructor called" << std::endl;
     }
-    ~ocean() {
-        std:: cout << "Ocean creatures Deconstructor called" << std:: endl;
+    ~ocean() override {
+        std::cout << "Ocean creatures Deconstructor called" << std::endl;
     }
-    void swim () {
-        std:: cout << "I can swim" << std:: endl;
+    void swim() {
+        std::cout << "I can swim" << std::endl;
     }
 };
 
-class amphibious : public ocean{
+class amphibious : public ocean {
 public:
     amphibious() {
-        std:: cout << "Amphibious creatures Constructor called" << std:: endl;
+        std::cout << "Amphibious creatures Constructor called" << std::endl;
     }
-    ~amphibious() {
-        std:: cout << "Amphibious creatures Deconstructor called" << std:: endl;
+    ~amphibious() override {
+        std::cout << "Amphibious creatures Deconstructor called" << std::endl;
     }
     void walk() {
-        std:: cout << "I can walk" << std:: endl;
+        std::cout << "I can walk" << std::endl;
     }
 };
 
-class terrestrial : public amphibious{
+class terrestrial : public amphibious {
 public:
     terrestrial() {
-        std:: cout << "Terrestrial creatures Constructor called" << std:: endl;
+        std::cout << "Terrestrial creatures Constructor called" << std::endl;
     }
-    ~terrestrial() {
-        std:: cout << "Terrestrial creatures Deconstructor called" << std:: endl;
+    ~terrestrial() override {
+        std::cout << "Terrestrial creatures Deconstructor called" << std::endl;
     }
-private:
-    using amphibious::swim;
+    void swim() const = delete;
 };
 
-class bird : public terrestrial{
+class bird : public terrestrial {
 public:
     bird() {
-        std:: cout << "Bird creatures Constructor called" << std:: endl;
+        std::cout << "Bird creatures Constructor called" << std::endl;
     }
-    ~bird() {
-        std:: cout << "Bird creatures Deconstructor called" << std:: endl;
+    ~bird() override {
+        std::cout << "Bird creatures Deconstructor called" << std::endl;
     }
-    void fly () {
-        std:: cout << "I can fly" << std:: endl;
+    void fly() {
+        std::cout << "I can fly" << std::endl;
     }
 };
 
-class waterfowl: public bird{
+class waterfowl : public bird {
 public:
     waterfowl() {
-        std:: cout << "Waterfowl creatures Constructor called" << std:: endl;
+        std::cout << "Waterfowl creatures Constructor called" << std::endl;
     }
-    ~waterfowl() {
-        std:: cout << "Waterfowl creatures Deconstructor called" << std:: endl;
+    ~waterfowl() override {
+        std::cout << "Waterfowl creatures Deconstructor called" << std::endl;
     }
-    using amphibious::swim;
+    using ocean::swim;
 };
 
-#endif //CREATURES_H
