@@ -46,7 +46,7 @@ public:
     }
 };
 
-class terrestrial : public generic{
+class terrestrial : protected amphibious{
 public:
     terrestrial() {
         std:: cout << "Terrestrial creatures Constructor called" << std:: endl;
@@ -80,9 +80,7 @@ public:
     ~waterfowl() {
         std:: cout << "Waterfowl creatures Deconstructor called" << std:: endl;
     }
-    void swim () {
-        std:: cout << "I can swim" << std:: endl;
-    }
+    using bird :: swim;
 };
 
 #endif //CREATURES_H
