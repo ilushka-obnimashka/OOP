@@ -3,9 +3,12 @@
 #include <memory>
 #include "creatures.h"
 
+// Вопрос , нужно ли описывать деструкторы классов как virtual если можно использовать умные указатели?? Будет ли это эффективнее??
+
 
 int main() {
     /* иллюстрируется не полиморфное поведение*/
+    /*
     std::vector <generic> creatures;
     amphibious a;
     creatures.push_back(a);
@@ -26,11 +29,12 @@ int main() {
 
     for (size_t i =0 ; i<creatures.size(); i++) {
         creatures[i].eat();
-        /* будет вызываться generic:: eat();
     }
+        /* будет вызываться generic:: eat();
+    }*/
 
     /* иллюстрируется полиморфное поведение*/
-    /*
+
     std::vector <std::shared_ptr<generic>> creatures;
 
     auto ptr_a = std::make_shared<amphibious>();
@@ -53,7 +57,7 @@ int main() {
 
     for (size_t i =0 ; i<creatures.size(); i++) {
         creatures[i]->eat();
-        /* будет вызываться eat() оответсвтующий конкретному экземпляру;
-    }*/
+        /* будет вызываться eat() оответсвтующий конкретному экземпляру;*/
+    }
 
 }
