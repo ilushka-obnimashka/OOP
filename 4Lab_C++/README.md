@@ -50,7 +50,7 @@
 #include <строка>
 #include "CSVParser.h"
 
-интервал основной() {
+int main() {
     std::ifstream file("example.csv");
     CSVParser<std::string, int, double> parser(file);
 
@@ -58,7 +58,7 @@
         std::cout << row << std::endl;
     }
 
-    вернуть 0;
+    return 0;
 }
 
 ```
