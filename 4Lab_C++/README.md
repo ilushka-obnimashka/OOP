@@ -20,7 +20,7 @@
 
 1. Клонируйте репозиторий:
     ```sh
-    git clone https://github.com/your-repo/csv-parser.git
+    git clone https://github.com/ilushka-obnimashka/OOP/tree/master/4Lab_C++
     cd 4Lab_C++
     ```
 
