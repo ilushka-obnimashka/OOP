@@ -20,8 +20,8 @@
 
 1. Клонируйте репозиторий:
     ```sh
-    git clone https://github.com/your-repo/csv-parser.git
-    cd csv-parser
+    git clone https://github.com/ilushka-obnimashka/OOP/tree/master/4Lab_C++
+    cd 4Lab_C++
     ```
 
 2. Создайте проект:
@@ -47,10 +47,11 @@
 ```cpp
 #include <iostream>
 #include <fstream>
-#include <строка>
+#include <string>
 #include "CSVParser.h"
+#include "print_tuple.h"
 
-интервал основной() {
+int main() {
     std::ifstream file("example.csv");
     CSVParser<std::string, int, double> parser(file);
 
@@ -58,7 +59,7 @@
         std::cout << row << std::endl;
     }
 
-    вернуть 0;
+    return 0;
 }
 
 ```
@@ -69,6 +70,7 @@
 ├── CMakeLists.txt
 ├── CSVParser.h
 ├── CSVParser.cpp
+├── print_tuple.h
 ├── html/
 │   ├── index.html
 │   ├── ...
