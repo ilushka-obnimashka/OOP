@@ -66,8 +66,6 @@ void Universe::SetField(int x, int y) {
 }
 
 
-
-
 // The method will set the status of the cell with coordinates (x,y), if the coordinates are correct
 // otherwise it will report an error
 void Universe::SetCellValue(int x, int y, CellState status) {
