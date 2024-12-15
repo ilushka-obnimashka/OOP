@@ -17,7 +17,6 @@ bool ArgumentParser::Parse() {
                 config_file_ = std::string(optarg);
                 break;
             case 'h':
-                printHelp();
                 return false;
             default:
                 throw std::invalid_argument(
