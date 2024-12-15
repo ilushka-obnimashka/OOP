@@ -32,15 +32,15 @@ void ArgumentParser::Parse() {
     }
 
     while (optind < argc_) {
-        if (input_samples_.size() >= 10) {
+        if (input_files_.size() >= 10) {
             throw std::invalid_argument("Too many input samples");
         }
-        input_samples_.push_back(std::string(argv_[optind++]));
+        input_files_.push_back(std::string(argv_[optind++]));
     }
 }
 
-std::vector<std::string> ArgumentParser::GetInputSamples() const{
-    return input_samples_;
+std::vector<std::string> ArgumentParser::GetInputFiles() const{
+    return input_files_;
 }
 
 std::string ArgumentParser::GetOutputFile() const{

@@ -5,5 +5,10 @@ set(CMAKE_CXX_STANDARD 11)
 
 set(SOURCES main.cpp
         ArgumentParser.h
-        ArgumentParser.cpp)
+        ArgumentParser.cpp
+        ConfigParser.h
+        WAVHeader.h
+        WAVHandler.h
+        Converter.h
+        Converter.cpp)
 add_executable(3Lab_C++ ${SOURCES})
