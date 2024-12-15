@@ -16,9 +16,9 @@ public:
      * @param argv pointer to an array of single- or multi-byte strings that contains the program's arguments.
      */
     ArgumentParser (int argc, char* argv[] )
-        :argc_(argc), argv_(argv),short_option_("c:h"), output_file_(nullptr), input_samples_(){
+        :argc_(argc), argv_(argv),short_option_("c:h"), output_file_(std::string("")), input_samples_(){
         long_options_[0] = {"config", 1, nullptr, 'c'};
-        long_options_[1] = {"help", 1, nullptr, 'h'};;
+        long_options_[1] = {"help", 0, nullptr, 'h'};;
         long_options_[2] = {nullptr,0,nullptr,0};
     }
 
@@ -27,22 +27,23 @@ public:
      * char * short_option_, struct option long_options_[4] -command line options that need to be supported.
      * @return true - if help command not called, false - otherwise.
      */
-    bool Parse();
-
+    void Parse();
     /**
      * @return std::vector<std::string> input_samples_ .
      */
-    std::vector< std::string>GetInputSamples();
+    std::vector< std::string>GetInputSamples() const;
 
     /**
      * @return std::string output_file_ .
      */
-    std::string GetOutputFile();
+    std::string GetOutputFile() const;
 
     /**
      * @return std::string config_file_ .
      */
-    std::string GetConfigFile();
+    std::string GetConfigFile() const;
+
+    const void PrintHepl();
 
 
 private:

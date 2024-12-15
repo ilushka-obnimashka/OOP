@@ -6,9 +6,9 @@
 
 const std::string kRED = "\033[1;31m";
 const std::string kRESET = "\033[0m";
-const std::string kGREEN = "\033[32m";
+const std::string kYELLOW = "\033[33m";
 
-bool ArgumentParser::Parse() {
+void ArgumentParser::Parse() {
     int opt;
     int opt_idx;
     while ((opt = getopt_long(argc_, argv_, short_option_, long_options_, &opt_idx)) != -1) {
@@ -17,7 +17,8 @@ bool ArgumentParser::Parse() {
                 config_file_ = std::string(optarg);
                 break;
             case 'h':
-                return false;
+                PrintHelp();
+                exit(1);
             default:
                 throw std::invalid_argument(
                     "Usage: ./sound_processor [-h] [-c config.txt] output.wav input1.wav [input2.wav ...]");
@@ -36,17 +37,28 @@ bool ArgumentParser::Parse() {
         }
         input_samples_.push_back(std::string(argv_[optind++]));
     }
-    return true;
 }
 
-std::vector<std::string> ArgumentParser::GetInputSamples() {
+std::vector<std::string> ArgumentParser::GetInputSamples() const{
     return input_samples_;
 }
 
-std::string ArgumentParser::GetOutputFile() {
+std::string ArgumentParser::GetOutputFile() const{
     return output_file_;
 }
 
-std::string ArgumentParser::GetConfigFile() {
+std::string ArgumentParser::GetConfigFile() const{
     return config_file_;
+}
+
+const void ArgumentParser::PrintHelp() {
+    std::cout << kYELLOW;
+    std::cout << "Usage: ./sound_processor [-h] [-c config.txt] output.wav input1.wav [input2.wav ...]" << std::endl;
+    std::cout << "Options:" << std::endl;
+    std::cout << "  -h, --help                Show this help message and exit" << std::endl;
+    std::cout << "  -c, --config CONFIG_FILE  Specify the configuration file" << std::endl;
+    std::cout << "  output.wav                Output WAV file" << std::endl;
+    std::cout << "  input1.wav                First input WAV file" << std::endl;
+    std::cout << "  [input2.wav ...]         Additional input WAV files (optional)" << std::endl;
+    std::cout << kRESET;
 }
