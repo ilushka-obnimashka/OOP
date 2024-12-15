@@ -1,16 +1,16 @@
 #ifndef WAVHEADER_H
 #define WAVHEADER_H
-
+#define FIXED_SAMPLE_RATE 44100
 /**
  * @brief A structure representing the header of a WAV file.
  *
  * This structure describes the format and characteristics of audio data stored in a WAV file.
  */
-struct WavHeader {
+struct WAVHeader {
     // RIFF Chunk
-    uint8_t chunk_id[4];        ///< Chunk ID. Indicates that the file is a RIFF file.
+    char chunk_id[4];        ///< Chunk ID. Indicates that the file is a RIFF file.
     uint32_t chunk_data_size;   ///< Size of the RIFF chunk data (file size minus the first 8 bytes).
-    uint8_t riff_type_id[4];    ///< Format type ID. Indicates that the file is a WAVE file.
+    char riff_type_id[4];    ///< Format type ID. Indicates that the file is a WAVE file.
 
     // format sub-chunk
     uint8_t chunk1_id[4];       ///< Format sub-chunk ID. Indicates that the following sub-chunk contains format information.
