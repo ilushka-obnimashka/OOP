@@ -43,7 +43,10 @@ public:
      */
     std::string GetConfigFile() const;
 
-    const void PrintHepl();
+    /**
+     * @brief method for printing help message. Will be called when the user runs the program with the -h or --help option.
+     */
+    const void PrintHelp();
 
 
 private:
