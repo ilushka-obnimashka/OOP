@@ -6,6 +6,6 @@
 */
 class ConfigParser {
 public:
-    ConfigParser(std::string congig_file)
+    ConfigParser(std::string congig_file);
 };
 #endif //CONFIGPARSER_H
