@@ -55,4 +55,5 @@ private:
     std::string config_file_;
     std::string output_file_;
 };
+
 #endif //ARGUMENTPARSER_H
