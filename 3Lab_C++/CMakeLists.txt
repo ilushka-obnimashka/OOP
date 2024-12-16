@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.22)
 project(3Lab_C++)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 
 set(SOURCES main.cpp
         ArgumentParser.h
@@ -14,5 +14,11 @@ set(SOURCES main.cpp
         Converter.cpp
         WriterWAV.h
         WriterWAV.cpp
+        Creators.h
+        Creators.cpp
+        ConfigParser.cpp
+        SoundProcessor.h
+        SoundProcessor.cpp
+        RegistrarorConvertors.h
 )
 add_executable(3Lab_C++ ${SOURCES})

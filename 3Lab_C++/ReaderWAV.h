@@ -1,7 +1,7 @@
-#ifndef WAVHANDLER_H
-#define WAVHANDLER_H
+#pragma once
 #include <fstream>
 #include <vector>
+#include <cstdint>
 #include "WAVHeader.h"
 
 /**
@@ -65,12 +65,17 @@ public:
     */
     bool GetSamples (std::vector<int16_t> &samples, uint32_t start, uint32_t end);
 
-    WAVHeader *GetWAVHeader();
+    /**
+    * @brief Retrieves the WAV header.
+    * This method returns a pointer to the WAVHeader_. WAV Header defined in file "WAVHeader.h"
+    * @return A pointer to the WAVHeader object.
+    */
+    WAVHeader *GetWAVHeader() const;
     /**
     * @brief Calculates the size of the WAV file in seconds.
     * @return The duration of the audio data in seconds.
     */
-    int GetSizeFileInSec();
+    int GetSizeFileInSec() const;
 
 private:
     std::ifstream file_;          ///< File stream for reading the WAV file.
@@ -78,4 +83,3 @@ private:
     uint64_t remaining_audio_data_size_; ///< Remaining size of the audio data in the WAV file.
     struct WAVHeader *WAVHeader_; ///< Pointer to the WAV header structure.
 };
-#endif //WAVHANDLER_H
