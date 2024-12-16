@@ -14,7 +14,8 @@
 /**
  * @brief Class ConfigParser provides a convenient interface for parsing a configuration file using std::regex.
  */
-class ConfigParser {
+class ConfigParser
+{
 public:
     /**
      * @brief Constructor for the ConfigParser class.
@@ -31,8 +32,8 @@ public:
 
 private:
     std::string configFileName; ///< The name of the configuration file.
-    std::regex muteRegex;       ///< Regular expression for the mute command.
-    std::regex mixRegex;        ///< Regular expression for the mix command.
+    std::regex muteRegex; ///< Regular expression for the mute command.
+    std::regex mixRegex; ///< Regular expression for the mix command.
     std::regex distortionRegex; ///< Regular expression for the distortion command.
 
     /**

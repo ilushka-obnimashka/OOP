@@ -1,8 +1,8 @@
 #include "SoundProcessor.h"
-int main(int argc, char* argv[]) {
 
+int main(int argc, char* argv[])
+{
     SoundProcessor proccesor;
-    proccesor.Control(argc,argv);
+    proccesor.Control(argc, argv);
     return 0;
 }
-

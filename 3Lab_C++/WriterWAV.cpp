@@ -15,10 +15,13 @@ const std::string kYELLOW = "\033[33m";
 /**
  * @brief Opens the WAV file for writing.
  */
-void WriterWAV::OpenWAVFile() {
+void WriterWAV::OpenWAVFile()
+{
     file_.open(output_file_path_, std::ios::in | std::ios::out | std::ios::binary);
-    if (!file_.is_open()) {
-        std::cerr << kRED << "Failed to open the file. Please check the file name or path and try again" << kRESET << std::endl;
+    if (!file_.is_open())
+    {
+        std::cerr << kRED << "Failed to open the file. Please check the file name or path and try again" << kRESET <<
+            std::endl;
         exit(2);
     }
 }
@@ -26,7 +29,8 @@ void WriterWAV::OpenWAVFile() {
 /**
  * @brief Closes the WAV file.
  */
-void WriterWAV::CloseWAVFile() {
+void WriterWAV::CloseWAVFile()
+{
     file_.close();
 }
 
@@ -39,8 +43,10 @@ void WriterWAV::CloseWAVFile() {
  * @param samples A reference to a vector of int16_t containing the audio samples to be written.
  * @param start The starting second from which to begin writing audio samples.
  */
-void WriterWAV::SaveSamples(std::vector<int16_t> &samples, int start) {
-    uint64_t offset = 2 * static_cast<uint64_t>(FIXED_SAMPLE_RATE) * static_cast<uint64_t>(start) + static_cast<uint64_t>(sizeof(WAVHeader));
+void WriterWAV::SaveSamples(std::vector<int16_t>& samples, int start)
+{
+    uint64_t offset = 2 * static_cast<uint64_t>(FIXED_SAMPLE_RATE) * static_cast<uint64_t>(start) + static_cast<
+        uint64_t>(sizeof(WAVHeader));
 
     std::streampos currentPos = file_.tellp();
 
