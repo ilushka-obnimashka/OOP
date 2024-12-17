@@ -13,7 +13,7 @@ public:
     generic() {
         std:: cout << "Generic Constructor called" << std:: endl;
     }
-    ~generic() {
+    virtual ~generic() {
         std:: cout << "Generic Deconstructor called" << std:: endl;
     }
 
@@ -33,7 +33,7 @@ public:
     ocean() {
         std:: cout << "Ocean creatures Constructor called" << std:: endl;
     }
-    ~ocean() {
+    virtual ~ocean() override{
         std:: cout << "Ocean creatures Deconstructor called" << std:: endl;
     }
 
@@ -53,7 +53,7 @@ public:
     terrestrial() {
         std:: cout << "Terrestrial creatures Constructor called" << std:: endl;
     }
-    ~terrestrial() {
+    virtual ~terrestrial() override{
         std:: cout << "Terrestrial creatures Deconstructor called" << std:: endl;
     }
     void walk() {
@@ -73,7 +73,7 @@ public:
     amphibious() {
         std:: cout << "Amphibious creatures Constructor called" << std:: endl;
     }
-    ~amphibious() {
+    virtual ~amphibious() override{
         std:: cout << "Amphibious creatures Deconstructor called" << std:: endl;
     }
 
@@ -90,7 +90,7 @@ public:
     bird() {
         std:: cout << "Bird creatures Constructor called" << std:: endl;
     }
-    ~bird() {
+    virtual ~bird() override{
         std:: cout << "Bird creatures Deconstructor called" << std:: endl;
     }
     void fly () {
@@ -109,7 +109,7 @@ public:
     waterfowl() {
         std:: cout << "Waterfowl creatures Constructor called" << std:: endl;
     }
-    ~waterfowl() {
+    virtual ~waterfowl() override{
         std:: cout << "Waterfowl creatures Deconstructor called" << std:: endl;
     }
     void eat() override {
