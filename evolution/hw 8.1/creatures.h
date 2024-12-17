@@ -54,9 +54,9 @@ public:
     ~terrestrial() {
         std:: cout << "Terrestrial creatures Deconstructor called" << std:: endl;
     }
-    void walk() {
-        std:: cout << "I can walk" << std:: endl;
-    }
+
+    using amphibious::walk;
+
 };
 
 class bird : public terrestrial{
